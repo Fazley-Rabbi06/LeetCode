@@ -1,22 +1,30 @@
 public class HouseRobber196 {
     public static int rob(int[] nums) {
-        int total = 0;
-        int currentMax = 0;
-        int index = 1;
-        for (int i = 0; i < nums.length; i += 2) {
-            currentMax += nums[i];
-            if (index < nums.length) {
-                total += nums[index];
+        int max = 0;
+        int index = 0;
+        for (int i = 0; i < 2; i++) {
+            int total = 0;
+            int currentMax = 0;
+
+            for (int j = i; j < nums.length; j += 2) {
+                currentMax += nums[j];
+                if (index < nums.length) {
+                    total += nums[index];
+                    index += 3;
+                }
             }
-            index += 2;
+            index = 1;
+            if (currentMax > total) {
+                total = currentMax;
+            }
+            if (total > max)
+                max = total;
         }
-        if (total > currentMax)
-            return total;
-        return currentMax;
+        return max;
     }
 
     public static void main(String[] args) {
-        System.out.println(rob(new int[] {0}));
+        System.out.println(rob(new int[]{4,1,2,7,5,3,1}));
     }
 }
 /*
