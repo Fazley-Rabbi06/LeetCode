@@ -1,0 +1,23 @@
+public class BinarySearch704 {
+    public static int search(int[] nums, int target) {
+        int start = 0;
+        int end = nums.length - 1;
+        if (nums[0] == target)
+            return 0;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+
+            if (nums[mid] == target)
+                return mid;
+            if (nums[mid] > target)
+                end = mid - 1;
+            else
+                start = mid + 1;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(search(new int[]{2},2));
+    }
+}
